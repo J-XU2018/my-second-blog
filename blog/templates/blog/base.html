@@ -28,7 +28,7 @@
         <div class="page-header">
             <div class="container">
               {% if user.is_authenticated %}
-                <a href="{% url 'post_new' %}"><button type="button" class="btn">New Post</button></a>
+                <a href="{% url 'post_new' %}"><button type="button" class="btn btn-success">New Post</button></a>
                 <a href="{% url 'post_draft_list' %}"><button type="button" class="btn btn-primary">Edit Draft</button></a>
               <!-- <button type="button" class="btn btn-primary">Primary</button> -->
               <!-- <button type="button" class="btn btn-success">Success</button> -->
