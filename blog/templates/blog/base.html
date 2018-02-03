@@ -35,7 +35,10 @@
               <!-- <button type="button" class="btn btn-info">Info</button> -->
               <!-- <button type="button" class="btn btn-warning">Warning</button> -->
                 <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger">log out</button></a>
+                <a href="{% url 'my_store' %}"><button type="button" class="btn btn-info">My Store</button></a>
+
                 <a href="https://www.google.co.nz/"><button type="button" class="btn btn-link">Google Link</button></a>
+
               {% else %}
                   <a id='login' href="{% url 'login' %}"><button type="button" class="btn btn-success">Login</button></a>
               {% endif %}
