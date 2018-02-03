@@ -3,15 +3,20 @@
 {% block content %}
 
     {% for post in posts %}
-      <div class="post">
-        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <h4><small>RECENT POSTS</small></h4>
+        <hr>
+      <!-- <div class="post"> -->
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
 
-        <div class="date">
-          <p> published: {{ post.published_date }} </p>
-        </div>
-        <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+        <h5><span class="glyphicon glyphicon-time"></span> Post by {{user.username}}, {{ post.published_date }}</h5>
+        <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
+        <!-- <p>{{ post.text|linebreaksbr }}</p> -->
+        <!-- <div class="date"> -->
+          <!-- <p> published: {{ post.published_date }} </p> -->
+        <!-- </div> -->
+        <!-- <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a> -->
+        <br><br>
 
-      </div>
+      <!-- </div> -->
     {% endfor %}
 {% endblock %}

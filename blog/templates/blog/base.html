@@ -4,26 +4,62 @@
 <html>
     <head>
         <title>My Family blog</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <script>
+        function changeBlogTitle(event){
+            document.getElementById("blogTitle").innerHTML="New Title";
+            document.getElementById("bloginfo").innerHTML="you changed title";
+            event.preventDefault()
+            // window.onload = myInitFunction;
+        }
 
+        </script>
     </head>
     <body>
         <div class="page-header">
-          {% if user.is_authenticated %}
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+            <div class="container">
+              {% if user.is_authenticated %}
+                <a href="{% url 'post_new' %}"><button type="button" class="btn">New Post</button></a>
+                <a href="{% url 'post_draft_list' %}"><button type="button" class="btn btn-primary">Edit Draft</button></a>
+              <!-- <button type="button" class="btn btn-primary">Primary</button> -->
+              <!-- <button type="button" class="btn btn-success">Success</button> -->
+              <!-- <button type="button" class="btn btn-info">Info</button> -->
+              <!-- <button type="button" class="btn btn-warning">Warning</button> -->
+                <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger">log out</button></a>
+                <a href="https://www.google.co.nz/"><button type="button" class="btn btn-link">Google Link</button></a>
+              {% else %}
+                  <a id='login' href="{% url 'login' %}"><button type="button" class="btn btn-success">Login</button></a>
+              {% endif %}
+              <h1><a href="/" id = 'blogTitle'>My_Blog </a></h1>
+              <p id="bloginfo"></p>
+            </div>
+          <!-- {% if user.is_authenticated %}
+            <a href="{% url 'post_new' %}" class="top-menu">
+              <span class="glyphicon glyphicon-plus"onmouseover="this.innerHTML='newPost'" onmouseout="this.innerHTML=''"></span></a>
+            <a href="{% url 'post_draft_list' %}" class="top-menu">
+              <span class="glyphicon glyphicon-edit"onmouseover="this.innerHTML='publish_draft'" onmouseout="this.innerHTML=''"></span></a>
             <p class="top-menu">Hello {{ user.username }}, Welcome!!</p>
             <p><small><a href="{% url 'logout' %}">Log out</a></small></p>
 
           {% else %}
-            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+            <a id='login' href="{% url 'login' %}" class="top-menu">
+                <span class="glyphicon glyphicon-lock" onmouseover="this.innerHTML='login'" onmouseout="this.innerHTML=''"></span></a>
 
           {% endif %}
-            <h1><a href="/">My Blog</a></h1>
+            <h1><a href="/" id = 'blogTitle' onmouseover="document.getElementById('bloginfo').innerHTML='click to change'"
+              onmouseout="document.getElementById('bloginfo').innerHTML=''"
+               onclick="changeBlogTitle(event)">My_Blog </a></h1>
+            <p id="bloginfo"></p> -->
+
         </div>
 
         <div class="content container">
@@ -35,6 +71,8 @@
             </div>
           </div>
         </div>
+
+
 
     </body>
 </html>
