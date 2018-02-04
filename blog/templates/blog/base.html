@@ -21,6 +21,14 @@
             event.preventDefault()
             // window.onload = myInitFunction;
         }
+        // document.getElementById('my_store').addEventListener('onmouseover',showmeg());
+
+        function showmeg(){
+          document.getElementById('my_store').innerHTML = 'Oops,not ready yet';
+                  }
+        function backmeg(){
+          document.getElementById('my_store').innerHTML = 'My Store';
+        }
 
         </script>
     </head>
@@ -35,7 +43,7 @@
               <!-- <button type="button" class="btn btn-info">Info</button> -->
               <!-- <button type="button" class="btn btn-warning">Warning</button> -->
                 <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger">log out</button></a>
-                <a href="{% url 'my_store' %}"><button type="button" class="btn btn-info">My Store</button></a>
+                <a href="{% url 'my_store' %}"><button type="button" class="btn btn-info" id='my_store' onmouseover = "showmeg()" onmouseout="backmeg()">My Store</button></a>
 
                 <a href="https://www.google.co.nz/"><button type="button" class="btn btn-link">Google Link</button></a>
 
@@ -74,7 +82,6 @@
             </div>
           </div>
         </div>
-
 
 
     </body>
