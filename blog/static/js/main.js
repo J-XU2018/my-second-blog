@@ -13,12 +13,15 @@ var weather_icon = document.getElementById('weather_icon');
     // btn.addEventListener("click", function(){
     var ourRequest = new XMLHttpRequest();
     ourRequest.open('GET', 'https://api.apixu.com/v1/current.json?key=0630cbfbf6b541768f633447180502&q=Auckland')
-    ourRequest.onload = function(){
+    ourRequest.send();
+    ourRequest.onreadystatechange = function(){
+      if (this.readyState == 4 && this.status == 200) {
       var ourData = JSON.parse(ourRequest.responseText);
       // console.log(ourRequest.responseText)
       renderHTML(ourData);
+    }
     };
-    ourRequest.send();
+
 
 
   // });

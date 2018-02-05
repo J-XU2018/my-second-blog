@@ -30,6 +30,7 @@
     <body>
         <div class="page-header">
             <div class="container">
+              <div class="col-md-10">
               {% if user.is_authenticated %}
                 <a href="{% url 'post_new' %}"><button type="button" class="btn btn-success">New Post</button></a>
                 <a href="{% url 'post_draft_list' %}"><button type="button" class="btn btn-primary">Edit Draft</button></a>
@@ -47,10 +48,7 @@
               {% endif %}
               <h1><a href="/" id = 'blogTitle'>My_Blog </a></h1>
               <!-- <p id="bloginfo"></p> -->
-              <div id='weather'>
-                <p id='weather'></p>
-                <img id='weather_icon'></img>
-            </div>
+
             </div>
           <!-- {% if user.is_authenticated %}
             <a href="{% url 'post_new' %}" class="top-menu">
@@ -69,9 +67,12 @@
               onmouseout="document.getElementById('bloginfo').innerHTML=''"
                onclick="changeBlogTitle(event)">My_Blog </a></h1>
             <p id="bloginfo"></p> -->
-
+            <div class="col-md-2">
+              <img id='weather_icon'></img>
+              <p id='weather'></p>
+            </div>
         </div>
-
+      </div>
         <div class="content container">
           <div class="row">
             <div class="col-md-8">
@@ -81,6 +82,7 @@
             </div>
           </div>
         </div>
+
 
         <script src='static/js/main.js'></script>
 
