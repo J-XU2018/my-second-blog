@@ -1,0 +1,10 @@
+{"location":{"name":"Auckland","region":"","country":"New Zealand","lat":-36.87,"lon":174.77,"tz_id":"Pacific/Auckland",
+  "localtime_epoch":1517803632,"localtime":"2018-02-05 17:07"},
+
+  "current":{"last_updated_epoch":1517802732,"last_updated":"2018-02-05 16:52",
+    "temp_c":24.9,"temp_f":76.8,"is_day":1,
+    "condition":{"text":"Patchy rain possible", "icon":"//cdn.apixu.com/weather/64x64/day/176.png","code":1063},
+
+      "wind_mph":5.4,"wind_kph":8.6,"wind_degree":282,"wind_dir":"WNW",
+      "pressure_mb":1010.0,"pressure_in":30.3,"precip_mm":0.4,"precip_in":0.02,
+      "humidity":54,"cloud":82,"feelslike_c":26.0,"feelslike_f":78.8,"vis_km":18.1,"vis_miles":11.0}}

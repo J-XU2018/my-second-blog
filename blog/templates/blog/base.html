@@ -14,8 +14,7 @@
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <script>
-        function changeBlogTitle(event){
+        <!-- function changeBlogTitle(event){
             document.getElementById("blogTitle").innerHTML="New Title";
             document.getElementById("bloginfo").innerHTML="you changed title";
             event.preventDefault()
@@ -23,14 +22,10 @@
         }
         // document.getElementById('my_store').addEventListener('onmouseover',showmeg());
 
-        function showmeg(){
-          document.getElementById('my_store').innerHTML = 'Oops,not ready yet';
-                  }
-        function backmeg(){
-          document.getElementById('my_store').innerHTML = 'My Store';
-        }
 
-        </script>
+        } -->
+
+        <!-- </script> -->
     </head>
     <body>
         <div class="page-header">
@@ -41,7 +36,7 @@
               <!-- <button type="button" class="btn btn-primary">Primary</button> -->
               <!-- <button type="button" class="btn btn-success">Success</button> -->
               <!-- <button type="button" class="btn btn-info">Info</button> -->
-              <!-- <button type="button" class="btn btn-warning">Warning</button> -->
+                <!-- <button id="btn" type="button"  class="btn btn-warning">Weather</button> -->
                 <a href="{% url 'logout' %}"><button type="button" class="btn btn-danger">log out</button></a>
                 <a href="{% url 'my_store' %}"><button type="button" class="btn btn-info" id='my_store' onmouseover = "showmeg()" onmouseout="backmeg()">My Store</button></a>
 
@@ -51,7 +46,11 @@
                   <a id='login' href="{% url 'login' %}"><button type="button" class="btn btn-success">Login</button></a>
               {% endif %}
               <h1><a href="/" id = 'blogTitle'>My_Blog </a></h1>
-              <p id="bloginfo"></p>
+              <!-- <p id="bloginfo"></p> -->
+              <div id='weather'>
+                <p id='weather'></p>
+                <img id='weather_icon'></img>
+            </div>
             </div>
           <!-- {% if user.is_authenticated %}
             <a href="{% url 'post_new' %}" class="top-menu">
@@ -83,6 +82,7 @@
           </div>
         </div>
 
+        <script src='static/js/main.js'></script>
 
     </body>
 </html>
