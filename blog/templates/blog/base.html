@@ -11,8 +11,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <!-- <link href="//fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css"> -->
+        <!-- <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css"> -->
 
+        <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css"> -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         <!-- function changeBlogTitle(event){
             document.getElementById("blogTitle").innerHTML="New Title";
@@ -26,6 +29,8 @@
         } -->
 
         <!-- </script> -->
+        <!-- <script src='static/js/main.js'></script> -->
+
     </head>
     <body>
         <div class="page-header">
@@ -46,7 +51,7 @@
               {% else %}
                   <a id='login' href="{% url 'login' %}"><button type="button" class="btn btn-success">Login</button></a>
               {% endif %}
-              <h1><a href="/" id = 'blogTitle'>My_Blog </a></h1>
+              <h1 style="font-family: 'Oswald', sans-serif"><a href="/" id = 'blogTitle'>My_Blog </a></h1>
               <!-- <p id="bloginfo"></p> -->
 
             </div>
