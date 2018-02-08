@@ -16,6 +16,10 @@
         {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
+        {% if post.shared_photo %}
+          <img src="{{ post.shared_photo.url}}" class="img-responsive"></img>
+
+        {% endif %}
     </div>
 
     <hr>
