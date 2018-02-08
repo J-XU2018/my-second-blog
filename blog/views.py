@@ -25,7 +25,9 @@ def post_new(request):
             post.author = request.user
             if 'publish' in request.POST:
                 post.published_date = timezone.now()
+# add threading, pretty sure there are bugs ,first time try just
             t1 = threading.Thread(post.save())
+
             t1.start()
             t1.join()
             request.session['last_post'] = "2016-2-2"
