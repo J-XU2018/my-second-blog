@@ -4,6 +4,7 @@ from .models import Post
 from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+import threading
 
 # Create your views here.
 def post_list(request):
@@ -24,7 +25,9 @@ def post_new(request):
             post.author = request.user
             if 'publish' in request.POST:
                 post.published_date = timezone.now()
-            post.save()
+            t1 = threading.Thread(post.save())
+            t1.start()
+            t1.join()
             request.session['last_post'] = "2016-2-2"
             # if user.is_authenticated:
                 # print("user ok")
