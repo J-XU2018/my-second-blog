@@ -1,0 +1,3 @@
+.weather-image:hover{
+  transform: scale(3) rotate(360deg);
+}

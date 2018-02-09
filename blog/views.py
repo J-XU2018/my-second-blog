@@ -18,6 +18,7 @@ def post_detail(request, pk):
 @login_required
 def post_new(request):
     if request.method == "POST":
+        
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
@@ -26,10 +27,11 @@ def post_new(request):
             if 'publish' in request.POST:
                 post.published_date = timezone.now()
 # add threading, pretty sure there are bugs ,first time try just
-            t1 = threading.Thread(post.save())
-
-            t1.start()
-            t1.join()
+            # t1 = threading.Thread(post.save())
+            #
+            # t1.start()
+            # t1.join()
+            post.save()
             request.session['last_post'] = "2016-2-2"
             # if user.is_authenticated:
                 # print("user ok")
