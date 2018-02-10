@@ -1,0 +1,3 @@
+Rate limiting is a 100% sure and standalone way to prevent DDOS attacks.
+
+ Well done! Rate limiting usually needs some form of authentication, too, to be successful.

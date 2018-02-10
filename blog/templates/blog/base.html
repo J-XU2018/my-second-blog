@@ -35,7 +35,7 @@
     <body>
         <div class="page-header">
             <div class="container">
-              <div class="col-md-10">
+              <div class="col-md-6">
               {% if user.is_authenticated %}
                 <a href="{% url 'post_new' %}"><button type="button" class="btn btn-success">New Post</button></a>
                 <a href="{% url 'post_draft_list' %}"><button type="button" class="btn btn-primary">Edit Draft</button></a>
@@ -54,6 +54,9 @@
               <h1 style="font-family: 'Oswald', sans-serif"><a href="/" id = 'blogTitle'>My_Blog </a></h1>
               <!-- <p id="bloginfo"></p> -->
 
+            </div>
+            <div class="col-md-4">
+              <img src="http://placeimg.com/200/200/nature">
             </div>
           <!-- {% if user.is_authenticated %}
             <a href="{% url 'post_new' %}" class="top-menu">

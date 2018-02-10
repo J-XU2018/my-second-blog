@@ -1,0 +1,22 @@
+.weather-image:hover{
+  transform: scale(3) rotate(360deg);
+}
+
+html,css,js handing front end, for example when click a button:
+1. show some information
+2. check data validation, xx@xx.com ...
+3.
+then backend handle's the posting infor, or check db
+
+html5,for body new tag: <header><main><footer>
+
+placeimg.com
+css.tricks.com
+search"basic web page"  developer.mozilla.org
+
+<img src=" " alt="when src not work, shows" class="">
+<a href="#top"><img xxxx>abc</a>  //both image and abc are link
+<a href="http://twitter.com/treehouse" target="_blank" class="social twitter">Twitter</a>
+
+<ul> <ol>
+css: padding, margin-top

@@ -1,0 +1,87 @@
+Create a new Flask instance as a variable named app.
+The name you pass to the Flask app should be __name__.
+
+1. must put html in templates directory
+1. u can apply more route to views, useful
+2. try the hard way first
+  2.1 code html into return""" """, then create html, and use render_template imported from flask
+3. note the unpacking method of context variable
+4.  create Flask app with (__name__)
+    add route and views to render, return string first, then use render_template to render html, {{ args }}
+    html inheritence, base.html
+
+5.  {% block title %}{% endblock %}  this block name is title, you can add more blocks
+    {% extends "base.html" %}
+    still remember how to use super() /inserts the contents of the same block from the parent template
+6.  static files, /static directory
+      .css, .js, imgs
+      u can use block for scripts also
+7. Form action="{{ url_for('save') }}" method="POST"
+      ---->figure out the url/save, its views funtions, then execute it
+   @app.route('/save', methods=['POST'])
+   def save():
+
+      //import pdb; pdb.set_trace() //to see how redirect works
+     //request.form  How would you get to the form in the request?  Immutable&Multidict
+      return redirect(url_for('index'))
+8. Cookie to store and retrieve data
+  //When we create a cookie, we have to attach it to the response.
+     make_response gives us access to the response
+    //form data --->JSON
+    def get_saved_data():
+        try:
+          data = json.loads(request.cookie.get('character'))
+        except TypeError:
+          data = {}
+        return data
+
+    @app.route('/')
+    def index():
+        data = get_saved_data()
+        return render_template('index.html', saves=data)
+    @app.route('/save', methods=['POST'])
+
+    def save():
+        response = make_response(redirect(url_for('index')))
+        data = get_saved_data()
+        data.update(dict(request.form.items()))
+        response.set_cookie('character',json.dumps(data) )
+        return response
+    HTML: input values="{{ saves.get('name', '') }}"
+9. Cookie: name is string, value is dict ,,when reading cookie, we read the value according name, so
+  we use the dict value in app, its easy to manipulate    data.get('')
+10 {{ args }} can be used in anywhere, in body/class/{% for/if %}/src/href/name/value/static-filename, eg to choose different img file
+   {% for/if %} also can be used in many, in class/body/.....
+11 flash messages: from flask import flash, app.secret_key, flash("msg"), find a place to show it,
+//after refresh page, flash disappears
+  <div class="wrap no-bottom messages">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashed">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% endwith %}
+  </div>
+12. Deploying Flask on Heroku
+12. request is a global object which represents a client asking for a view from your app?
+13. database
+  db = SqliteDatabase("student.db")
+  class Student(Model):
+
+    class Meta:
+##for PeeWee/Django tell the model what database it belongs to, also many things, which field shoud have index, default
+        database = db
+##check other attribute to find more
+14. if __name__ == '__main__':
+    db.connect()
+    db.create_tables([Student], safe=True)
+
+15. command line: ls -->find students.db
+                  sqlite3 students.db
+                sqlite> .tables
+                        select * from students
+                        .exit
+16.
