@@ -78,10 +78,11 @@ The name you pass to the Flask app should be __name__.
 14. if __name__ == '__main__':
     db.connect()
     db.create_tables([Student], safe=True)
+  //safetly creat our tables
 
 15. command line: ls -->find students.db
                   sqlite3 students.db
                 sqlite> .tables
                         select * from students
                         .exit
-16.
+16. --continue in DB Peewee note.txt
