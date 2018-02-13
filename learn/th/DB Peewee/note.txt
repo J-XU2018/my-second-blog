@@ -3,7 +3,7 @@
   class Student(Model):
 
     class Meta:
-##for PeeWee/Django tell the model what database it belongs to, also many things, which field shoud have index, default
+##for PeeWee/Django, tell the model what database it belongs to, also many things, which field shoud have index, default
         database = db
 ##check other attribute to find more
 14. if __name__ == '__main__':
@@ -30,10 +30,10 @@
     things u've defined locally, or already imported, cn be overwritten by the import
     Peewee's contents are no longer contained in the peewee namespace
 20 __name__ is a special variable that refers to the current namespace.
-21  """ :called Doc string
+21  """ :called Docstring
 22  To prevent code from being executed when you import a module,
   put it into a function or class, or inside  if __name__ == '__main__'
-23. once creat the database instance,
+23. once create the database instance,
     db = SqliteDatabase('challenge.db')
   /Create a variable named db that is an SqliteDatabase with a filename of challenges.db
     def initialize():

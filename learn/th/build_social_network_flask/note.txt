@@ -1,0 +1,49 @@
+1. {%- macro hide_email(user) -%}
+  {#- Get the first letter of the email -#}
+  {{user.email[0]}}
+  {#- Get all the letters after the first, but before the @ -#}
+  {%- for letter in user.email.split('@')[0][1:] -%}
+    {{'*'}}
+  {%- endfor -%}
+  {#- Append the rest of the email on -#}
+  {{ '@' + user.email.split('@')[1] }}
+  {%- endmacro -%}
+  assigment in Jinja is different than in Python, %- to avoid extra spacing in the for loop
+2.@app.route("/register", methods=["GET", "POST"])
+  def register():
+    form = forms.SignUpForm()
+    return render_template("register.html", form=form)
+    @app.route("/register", methods=["GET", "POST"])
+//In the template's context, name the SignUpForm instance as form.
+3. note the sequence to add @login_required
+4. url_for('endpoint/function name/view name', args) takes the endpoint name of your view, and additional keyword arguments to provide values for the parameters.
+    It takes keyword arguments for the variables:
+    url_for('add', variable=foo)
+  eg1：
+    <a href={{ url_for('index') }}>Index</a>   //anchor similar like redirect
+    @app.route('/index')
+    @app.route('/')
+      def index():
+  eg2:
+      @app.route('/questions/<int:question_id>'):    #int has been used as a filter that only integer will be passed in the url otherwise it will give a 404 error
+      def find_question(question_id):
+        return ('you asked for question{0}'.format(question_id))
+      For the above we can use:
+      <a href = {{ url_for(find_question,question_id=1) }}>Question 1</a>
+      Like this you can simply pass the parameters!
+  eg3:
+      Other sample snippets of usage for linking js or css to your template are below.
+      <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+      <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+5  class Post(Model):
+       user=ForeignKeyField(
+          rel_model=User,
+          related_name='posts'
+       )
+6.  Add a new function named not_found that returns the string "404". Remember, error handlers
+need to accept a single argument, the error.
+Decorate this function with @app.errorhandler(404). Add , 404 after your response, too
+7. I want to use Flask-Login with my User model. What should I add to the class definition? UserMixin
+8. Class methods take an argument that refers to the class itself. Generally this is named cls.
+9,   TestCase - A group of tests about a certain area of the project
+     test_ - A test method that actually tests a part of the code

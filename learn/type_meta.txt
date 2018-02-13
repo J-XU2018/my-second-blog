@@ -1,0 +1,88 @@
+请记住，'type'实际上是一个类，就像'str'和'int'一样
+# 所以，你可以从type继承
+class UpperAttrMetaClass(type):
+   # __new__ 是在__init__之前被调用的特殊方法
+   # __new__是用来创建对象并返回之的方法
+   # 而__init__只是用来将传入的参数初始化给对象
+   # 你很少用到__new__，除非你希望能够控制对象的创建
+   # 这里，创建的对象是类，我们希望能够自定义它，所以我们这里改写__new__
+   # 如果你希望的话，你也可以在__init__中做些事情
+   # 还有一些高级的用法会涉及到改写__call__特殊方法，但是我们这里不用
+   def __new__(upperattr_metaclass, future_class_name, future_class_parents, future_class_attr):
+       attrs = ((name, value) for name, value in future_class_attr.items() if not name.startswith('__'))
+       uppercase_attr = dict((name.upper(), value) for name, value in attrs)
+       return type(future_class_name, future_class_parents, uppercase_attr)
+
+       但是，这种方式其实不是OOP。我们直接调用了type，而且我们没有改写父类的__new__方法。现在让我们这样去处理:
+
+       Python
+
+       class UpperAttrMetaclass(type):
+           def __new__(upperattr_metaclass, future_class_name, future_class_parents, future_class_attr):
+               attrs = ((name, value) for name, value in future_class_attr.items() if not name.startswith('__'))
+               uppercase_attr = dict((name.upper(), value) for name, value in attrs)
+
+               # 复用type.__new__方法
+               # 这就是基本的OOP编程，没什么魔法
+               return type.__new__(upperattr_metaclass, future_class_name, future_class_parents, uppercase_attr)
+       1
+       2
+       3
+       4
+       5
+       6
+       7
+       8
+       class UpperAttrMetaclass(type):
+           def __new__(upperattr_metaclass, future_class_name, future_class_parents, future_class_attr):
+               attrs = ((name, value) for name, value in future_class_attr.items() if not name.startswith('__'))
+               uppercase_attr = dict((name.upper(), value) for name, value in attrs)
+
+               # 复用type.__new__方法
+               # 这就是基本的OOP编程，没什么魔法
+               return type.__new__(upperattr_metaclass, future_class_name, future_class_parents, uppercase_attr)
+       你可能已经注意到了有个额外的参数upperattr_metaclass，这并没有什么特别的。类方法的第一个参数总是表示当前的实例，就像在普通的类方法中的self参数一样。当然了，为了清晰起见，这里的名字我起的比较长。但是就像self一样，所有的参数都有它们的传统名称。因此，在真实的产品代码中一个元类应该是像这样的：
+
+       Python
+
+       class UpperAttrMetaclass(type):
+           def __new__(cls, name, bases, dct):
+               attrs = ((name, value) for name, value in dct.items() if not name.startswith('__')
+               uppercase_attr  = dict((name.upper(), value) for name, value in attrs)
+               return type.__new__(cls, name, bases, uppercase_attr)
+       1
+       2
+       3
+       4
+       5
+       class UpperAttrMetaclass(type):
+           def __new__(cls, name, bases, dct):
+               attrs = ((name, value) for name, value in dct.items() if not name.startswith('__')
+               uppercase_attr  = dict((name.upper(), value) for name, value in attrs)
+               return type.__new__(cls, name, bases, uppercase_attr)
+       如果使用super方法的话，我们还可以使它变得更清晰一些，这会缓解继承（是的，你可以拥有元类，从元类继承，从type继承）
+
+       Python
+
+       class UpperAttrMetaclass(type):
+           def __new__(cls, name, bases, dct):
+               attrs = ((name, value) for name, value in dct.items() if not name.startswith('__'))
+               uppercase_attr = dict((name.upper(), value) for name, value in attrs)
+               return super(UpperAttrMetaclass, cls).__new__(cls, name, bases, uppercase_attr)
+       1
+       2
+       3
+       4
+       5
+       class UpperAttrMetaclass(type):
+           def __new__(cls, name, bases, dct):
+               attrs = ((name, value) for name, value in dct.items() if not name.startswith('__'))
+               uppercase_attr = dict((name.upper(), value) for name, value in attrs)
+               return super(UpperAttrMetaclass, cls).__new__(cls, name, bases, uppercase_attr)
+       就是这样，除此之外，关于元类真的没有别的可说的了。使用到元类的代码比较复杂，这背后的原因倒并不是因为元类本身，而是因为你通常会使用元类去做一些晦涩的事情，依赖于自省，控制继承等等。确实，用元类来搞些“黑暗魔法”是特别有用的，因而会搞出些复杂的东西来。但就元类本身而言，它们其实是很简单的：
+
+       1)   拦截类的创建
+
+       2)   修改类
+
+       3)   返回修改之后的类

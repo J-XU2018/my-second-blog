@@ -48,7 +48,7 @@ The name you pass to the Flask app should be __name__.
         response.set_cookie('character',json.dumps(data) )
         return response
     HTML: input values="{{ saves.get('name', '') }}"
-9. Cookie: name is string, value is dict ,,when reading cookie, we read the value according name, so
+9. Cookie: name is string, value is dict string ,,when reading cookie, we read the value according name, so
   we use the dict value in app, its easy to manipulate    data.get('')
 10 {{ args }} can be used in anywhere, in body/class/{% for/if %}/src/href/name/value/static-filename, eg to choose different img file
    {% for/if %} also can be used in many, in class/body/.....
